@@ -21,14 +21,16 @@ services:
       - mysql-data:/var/lib/mysql
       - ./config/mysql/app.cnf:/etc/mysql/conf.d/app.cnf
       - ./config/mysql/initdb.d/:/docker-entrypoint-initdb.d/
-#    ports:
-#      - "3306:3306"
-  proxy:
-    image: jwilder/nginx-proxy
+  nginx:
+    image: nginx:alpine
     ports:
       - "80:80"
-    volumes:
-      - /var/run/docker.sock:/tmp/docker.sock:ro
+#  proxy:
+#    image: jwilder/nginx-proxy
+#    ports:
+#      - "80:80"
+#    volumes:
+#      - /var/run/docker.sock:/tmp/docker.sock:ro
 #  backend-nginx:
 #    image: anhmantk/backend-nginx
 #    command: nginx
