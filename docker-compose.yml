@@ -23,8 +23,10 @@ services:
       - ./config/mysql/initdb.d/:/docker-entrypoint-initdb.d/
 #    ports:
 #      - "3306:3306"
-#  backend-nginx:
-#    image: anhmantk/backend-nginx
+  backend-nginx:
+    image: anhmantk/backend-nginx
+    ports:
+      - "80:80"
   backend-php:
     image: anhmantk/backend-php
 volumes:
