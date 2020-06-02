@@ -1,0 +1,8 @@
+[client]
+default-character-set=utf8mb4
+
+[mysqld]
+character-set-server=utf8mb4
+binlog-format=MIXED
+innodb_buffer_pool_load_at_startup=OFF
+default_authentication_plugin=mysql_native_password

@@ -1,0 +1,28 @@
+version: '3.3'
+
+services:
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOSTS=104.197.223.37
+    ports:
+      - "${PHPMYADMIN_PORT}:80"
+    volumes:
+      - ./config/phpmyadmin/config.ini:/usr/local/etc/php/conf.d/phpmyadmin.ini
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./config/mysql/app.cnf:/etc/mysql/conf.d/app.cnf
+      - ./config/mysql/initdb.d/:/docker-entrypoint-initdb.d/
+    ports:
+      - "${MYSQL_PORT}:3306"
+volumes:
+  mysql-data:
+    driver: local
