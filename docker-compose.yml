@@ -25,6 +25,7 @@ services:
 #      - "3306:3306"
   backend-nginx:
     image: anhmantk/backend-nginx
+    command: nginx
     ports:
       - "80:80"
   backend-php:
