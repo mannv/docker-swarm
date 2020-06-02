@@ -23,11 +23,17 @@ services:
       - ./config/mysql/initdb.d/:/docker-entrypoint-initdb.d/
 #    ports:
 #      - "3306:3306"
-  backend-nginx:
-    image: anhmantk/backend-nginx
-    command: nginx
+  proxy:
+    image: jwilder/nginx-proxy
     ports:
       - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+#  backend-nginx:
+#    image: anhmantk/backend-nginx
+#    command: nginx
+#    ports:
+#      - "80:80"
   backend-php:
     image: anhmantk/backend-php
 volumes:
